@@ -1,5 +1,8 @@
-Update system
+Download package info
 ``sudo apt-get update``
+
+Upgrade system
+``sudo apt-get upgrade``
 
 Uninstall old installations
 ``sudo apt-get remove docker docker-engine docker.io containerd runc``
@@ -23,5 +26,10 @@ Install docker engine
 Start docker service
 ``sudo service docker start``
 ``sudo service docker status``
+
+Add user to docker group if exists:
+``sudo groupadd docker $USER``
+
 Run docker example
-``sudo docker run hello-world``
+``docker run hello-world``
+
