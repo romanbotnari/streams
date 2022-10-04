@@ -27,8 +27,11 @@ Start docker service
 ``sudo service docker start``
 ``sudo service docker status``
 
-Add user to docker group if exists:
-``sudo groupadd docker $USER``
+Create docker group
+``sudo groupadd docker``
+
+Add user to docker group
+``usermod -a -G docker $USER``
 
 Run docker example
 ``docker run hello-world``
