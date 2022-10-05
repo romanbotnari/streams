@@ -141,4 +141,9 @@ Kafka client --> Connects to a broker from the lsit --> Broker B
 # References
 
 - https://kafka.apache.org/documentation/
-- 
+- https://udemy.com/course/apache-kafka
+- https://medium.com/@aliarslan10/apache-kafka-configuration-in-spring-boot-with-producer-and-consumer-example-621adf2fd78b
+- https://github.com/aliarslan10/spring-for-kafka
+- https://www.confluent.io/blog/5-things-every-kafka-developer-should-know/
+- https://reflectoring.io/spring-boot-kafka/
+- https://www.baeldung.com/ops/kafka-docker-setup
