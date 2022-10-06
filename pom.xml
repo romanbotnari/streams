@@ -16,6 +16,14 @@
 	<properties>
 		<java.version>11</java.version>
 	</properties>
+
+	<packaging>pom</packaging>
+
+	<modules>
+		<module>producer</module>
+		<module>consumer</module>
+	</modules>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

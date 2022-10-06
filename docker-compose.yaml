@@ -5,10 +5,10 @@ services:
     ports:
       - "2181:2181"
       - "9092:9092"
-    hostname: localhost
+    hostname: kafka
     container_name: kafka
     environment:
-      - "ADVERTISED_HOST=localhost"
+      - "ADVERTISED_HOST=kafka"
       - "ADVERTISED_PORT=9092"
       - "AUTO_CREATE_TOPICS=true"
     command: >
@@ -19,6 +19,22 @@ services:
       --zookeeper
       localhost:2181 --replication-factor 1 --partitions 1
       --topic my-kafka-topic &) && (supervisord -n)"
+    networks:
+      - app-network
+  producer:
+    build: producer/
+    ports:
+      - "8080:8080"
+    hostname: localhost
+    container_name: producer
+    networks:
+      - app-network
+  consumer:
+    build: consumer/
+    hostname: localhost
+    container_name: consumer
+    ports:
+      - "8081:8081"
     networks:
       - app-network
 networks:

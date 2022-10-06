@@ -8,11 +8,16 @@ import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
+import org.springframework.context.annotation.Configuration;
+
+import lombok.extern.slf4j.Slf4j;
 import xyz.romanbotnari.streams.models.MessageModel;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@Slf4j
+@Configuration
 public class ConsumerConfiguration 
 {
     @Value("${kafka.server.address}")
@@ -23,7 +28,10 @@ public class ConsumerConfiguration
 
     @Bean
     public ConsumerFactory<String, xyz.romanbotnari.streams.models.MessageModel> consumerFactory() {
+        log.info("consumerFactory");
+        log.info("kafkaAddress: {} ", kafkaAddress);
         Map<String, Object> props = new HashMap<>();
+        
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaAddress);
         props.put(ConsumerConfig.GROUP_ID_CONFIG, groupId);
         props.put(JsonDeserializer.VALUE_DEFAULT_TYPE, xyz.romanbotnari.streams.models.MessageModel.class.getName());
@@ -31,7 +39,6 @@ public class ConsumerConfiguration
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class.getName());
         return new DefaultKafkaConsumerFactory<>(props);
-        // , new StringDeserializer(), new JsonDeserializer<>(MessageModel.class)
     }
 
     @Bean

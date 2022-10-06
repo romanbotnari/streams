@@ -52,3 +52,30 @@ docker logs kafka
 2022-10-04 13:40:01,115 INFO success: kafka entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
 Created topic "my-kafka-topic".
 ```
+
+```
+ curl -X POST localhost:8080/produce -H 'Content-Type: application/json' -d '[{"id":"123e-e89b-12d3-a456-4266","message":"this is a messavv3", "messageDate": "2022-01-13"}]'
+------------------------------------
+
+docker logs kafka
+-----------------
+ x.r.streams.services.ConsumerService     : Message received. Message : [{"id":"123e-e89b-12d3-a456-4266", "message":"this is a messavv3", "messageDate":[2022, 1, 13]}] 
+```
+``` 
+root@localhost:/# curl -X GET kafka:9092 -vvv
+Note: Unnecessary use of -X or --request, GET is already inferred.
+*   Trying 172.22.0.2:9092...
+* Connected to kafka (172.22.0.2) port 9092 (#0)
+> GET / HTTP/1.1
+> Host: kafka:9092
+> User-Agent: curl/7.74.0
+> Accept: */*
+> 
+* Recv failure: Connection reset by peer
+* Closing connection 0
+curl: (56) Recv failure: Connection reset by peer
+```
+# Redeploy
+```
+docker compose down && mvn package && docker rmi streams-consumer streams-producer spotify/kafka && docker compose up -d
+```

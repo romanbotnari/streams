@@ -136,6 +136,15 @@ Kafka client --> Connect (using Metadata)           --> Broker A
 Broker A     --> List of all brokers                --> Kafka Client
 Kafka client --> Connects to a broker from the lsit --> Broker B 
 
+## Zookeeper
+- Manages brokers
+- Helps in performing leader election for partitions
+- Sends notifications to Kafka in case of changes
+  - New topic, broker dies, broker comes up, delete topics etc.
+- Zookeeper by design operates with an odd number of servers
+- Zookeeper has a leader (writes) the rest of the servers are followers
+- Zookeper does not save offsets. 
+
 ## Other Kafkas
 
 # References

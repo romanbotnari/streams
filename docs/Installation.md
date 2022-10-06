@@ -66,7 +66,7 @@ docker run hello-world
 
 # Kafka
 
-There's a docker compose file in the root. It starts a Kafka and Zookeper instance inside a docker container. 
+There's a docker compose file in the root. It starts a Kafka and Zookeper instance inside a single docker container. 
 
 It will download the following image:
 
