@@ -34,7 +34,7 @@ services:
     hostname: localhost
     container_name: consumer
     ports:
-      - "8081:8081"
+      - "8181:8181"
     networks:
       - app-network
 networks:
