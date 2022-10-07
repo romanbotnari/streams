@@ -5,6 +5,7 @@ services:
     ports:
       - "2181:2181"
       - "9092:9092"
+      - "7071:7071"
     hostname: kafka
     container_name: kafka
     environment:
