@@ -156,3 +156,4 @@ Kafka client --> Connects to a broker from the lsit --> Broker B
 - https://www.confluent.io/blog/5-things-every-kafka-developer-should-know/
 - https://reflectoring.io/spring-boot-kafka/
 - https://www.baeldung.com/ops/kafka-docker-setup
+- https://levelup.gitconnected.com/metrics-reliably-configuring-prometheus-and-grafana-with-docker-2077541c8e6d

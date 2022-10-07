@@ -1,7 +1,7 @@
 version: '3.1'
 services:
   kafka-app:
-    image: spotify/kafka
+    build: kafka/
     ports:
       - "2181:2181"
       - "9092:9092"
@@ -11,6 +11,7 @@ services:
       - "ADVERTISED_HOST=kafka"
       - "ADVERTISED_PORT=9092"
       - "AUTO_CREATE_TOPICS=true"
+      - "EXTRA_ARGS=-javaagent:/usr/app/jmx_prometheus_javaagent.jar=7071:/usr/app/prom-jmx-agent-config.yml"
     command: >
       bash -c
       "(sleep 15s &&
@@ -35,6 +36,27 @@ services:
     container_name: consumer
     ports:
       - "8181:8181"
+    networks:
+      - app-network
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    networks:
+      - app-network
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./monitoring/grafana/dashboard-provisioning.yml:/etc/grafana/provisioning/dashboards/all.yml
+      - ./monitoring/grafana/datasources.yml:/etc/grafana/provisioning/datasources/all.yml
+      - ./monitoring/grafana/config.ini:/etc/grafana/config.ini
+      - ./monitoring/grafana/dashboards:/var/lib/grafana/dashboards
     networks:
       - app-network
 networks:
